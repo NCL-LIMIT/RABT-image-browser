@@ -1,0 +1,7 @@
+<div *ngFor="let image of images">
+  <p>{{image.name}}, {{image.properties.createdOn}}</p>
+  <img [src]="image.imageurl">
+</div>
+
+<button (click)="downloadFile('1613663666-input.jpg')">Download</button>
+

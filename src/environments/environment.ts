@@ -3,7 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  connectionString: 'DefaultEndpointsProtocol=https;AccountName=rabtstorage;AccountKey=wILf+u6I+QO7kwKS2pQFH/T5zWTCuzVguNJheSjGCkXnrlUiCRxWANdoyR10cMF+NNVMwXjhkreh+MKwD57PZw==;EndpointSuffix=core.windows.net'
 };
 
 /*

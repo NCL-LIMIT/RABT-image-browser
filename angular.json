@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "RABT-image-browser"
+    }
+  },
+  "defaultProject": "RABT-image-browser",
+  "cli": {
+    "analytics": false
+  }
 }
