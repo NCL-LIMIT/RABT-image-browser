@@ -13,6 +13,8 @@ export class DataService {
     'Access-Control-Allow-Headers': 'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With',
   });
 
+  passwordEntered: boolean;
+
   constructor(private http: HttpClient) { }
 
   private handleError(error: any): Promise<any> {
@@ -28,6 +30,10 @@ export class DataService {
       .then((response) => response)
       .catch(this.handleError);
 
+  }
+
+  setPasswordEntered(entered: boolean) {
+    this.passwordEntered = entered;
   }
 
 }

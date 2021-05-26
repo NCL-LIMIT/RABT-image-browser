@@ -1,14 +1,12 @@
 <div class="container-fluid">
-
-  <h3>Rest and Be Thankful</h3>
-
-<div fxLayout="row wrap" fxLayoutGap="3px" class="content">
+  <div fxLayout="row wrap" fxLayoutGap="3px" class="content">
   <div *ngFor="let image of images">
-  <div  (click)="viewLargerImage(image)" class="card imageCard" style="width: 200px;">
+  <div   class="card imageCard" style="width: 200px;">
     <img class="thumbnail" [src]="image.imageurl">
     <div class="card-footer text-center">
       <p class="mb-0">{{image.properties.createdOn | date: 'd/M/yy, h:mm:ss a z'}} </p>
       <p class="small mb-0">{{image.name}}</p>
+      <a [href]="image.blob"  target="_blank" >Download</a>
     </div>
   </div>
 </div>
@@ -16,3 +14,4 @@
 </div>
 
 
+<!--(click)="viewLargerImage(image)"-->

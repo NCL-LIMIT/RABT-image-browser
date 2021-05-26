@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="login">
+    <!--    <img class=".img-fluid. max-width: 20%" [src]="'/../../assets/artworks/' + artwork._id + '.jpg'" >-->
+    <h4>Please enter the website password:</h4>
+    <div class="input-group mb-3" style="width: 20rem;">
+      <input [(ngModel)]="passwordText" aria-describedby="button-addon2" aria-label="password" class="form-control" placeholder="Password" type="text" >
+      <div class="input-group-append">
+        <button (keyup.enter)="enterPassword()" (click)="enterPassword()" class="btn btn-outline-primary" id="button-addon2" type="button">Enter</button>
+      </div>
+    </div>
+    <p>{{message}}</p>
+  </div>
+</div>

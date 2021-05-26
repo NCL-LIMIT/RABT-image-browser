@@ -8,19 +8,23 @@ import {HttpClientModule} from '@angular/common/http';
 import {ImageModalComponent} from './image-modal/image-modal.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {FlexModule} from '@angular/flex-layout';
+import { SigninComponent } from './signin/signin.component';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     ImageBrowserComponent,
-    ImageModalComponent
+    ImageModalComponent,
+    SigninComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     NgbModule,
-    FlexModule
+    FlexModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
