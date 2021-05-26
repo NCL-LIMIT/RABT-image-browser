@@ -1,6 +1,13 @@
-img {
-  border: 1px solid #ddd; /* Gray border */
-  border-radius: 4px;  /* Rounded border */
-  padding: 5px; /* Some padding */
-  width: 150px; /* Set a small width */
+.thumbnail {
+  width: 200px;
 }
+
+.card-footer {
+  padding: 0.25em;
+}
+
+.card {
+  cursor: pointer;
+}
+
+

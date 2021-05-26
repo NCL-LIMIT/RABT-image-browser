@@ -1,7 +1,15 @@
+<!--<div class="modal-header">-->
+<!--    <p class="modal-title" id="modal-basic-title">{{image.name}}</p>-->
+<!--  </div>-->
 <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">{{image.name}}</h4>
-  </div>
-  <div class="modal-body">
-    <img style="width: 100%;" [src]="image.imageurl">
+  <p class="mb-0 pr-4">{{image.properties.createdOn | date: 'short'}} </p>
+  <p class=" mb-0">{{image.name}}</p>
+<button type="button" class="close" aria-label="Close" (click)="close()">
+  <span aria-hidden="true">&times;</span>
+</button>
+</div>
+  <div class="modal-body pt-0">
+    <img style="" class="img-fluid" [src]="image.imageurl">
+
   </div>
 

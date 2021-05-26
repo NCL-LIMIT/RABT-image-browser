@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-image-modal',
@@ -8,10 +9,14 @@ import {Component, Input, OnInit} from '@angular/core';
 export class ImageModalComponent implements OnInit {
 @Input() public image;
 
-  constructor() { }
+  constructor(private activeModal: NgbActiveModal) { }
 
   ngOnInit(): void {
 
+  }
+
+  public close() {
+    this.activeModal.close();
   }
 
 }

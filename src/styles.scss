@@ -1,4 +1,42 @@
 /* You can add global styles to this file, and also import other style files */
 
+.modal {
+  padding: 0 !important; // override inline padding-right added from js
+}
+.modal .modal-dialog {
+  width: 70vw;
+  max-width: none;
+  margin: auto;
+  margin-top: 8px;
+}
+.modal .modal-content {
+  border: 0;
+  border-radius: 0;
+}
+
+.modal-header {
+  padding: 0.5rem 0.5rem !important;
+  border: none !important;
+}
+.modal-header .close {
+  padding: 0.5rem 0.5rem !important;
+  border: none !important;
+
+}
+
+
+
+
+.close:focus, .close:active:focus, .close.active:focus{
+  outline:none;
+  box-shadow:none;
+}
+.noBorder {
+  border: none !important;
+  float: right;
+}
+//.modal .modal-body {
+//  overflow-y: auto;
+//}
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
