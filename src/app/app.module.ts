@@ -7,6 +7,7 @@ import { ImageBrowserComponent } from './image-browser/image-browser.component';
 import {HttpClientModule} from '@angular/common/http';
 import {ImageModalComponent} from './image-modal/image-modal.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {FlexModule} from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    FlexModule
   ],
   providers: [],
   bootstrap: [AppComponent]

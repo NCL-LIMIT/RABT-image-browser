@@ -1,10 +1,12 @@
-<div *ngFor="let image of images">
-  <div (click)="viewLargerImage(image)" class="card">
+<div class="container">
+<div fxLayout="row wrap" class="content">
+  <div *ngFor="let image of images">
+  <div  (click)="viewLargerImage(image)" class="card imageCard" style="width: 200px;">
     <p>{{image.name}}, {{image.properties.createdOn}}</p>
     <img [src]="image.imageurl">
   </div>
-
 </div>
-
+</div>
+</div>
 
 
