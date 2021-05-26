@@ -4,6 +4,10 @@ import * as AzureStorage from '@azure/storage-blob';
 import { BlobServiceClient } from '@azure/storage-blob';
 import {environment} from '../../environments/environment';
 import {DomSanitizer} from '@angular/platform-browser';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {ImageModalComponent} from '../image-modal/image-modal.component';
+import {type} from 'os';
+
 
 @Component({
   selector: 'app-image-browser',
@@ -13,9 +17,11 @@ import {DomSanitizer} from '@angular/platform-browser';
 export class ImageBrowserComponent implements OnInit {
 images = [];
 imageBlobUrl;
-// https://docs.microsoft.com/en-us/azure/storage/blobs/quickstart-blobs-javascript-browser
+imagesReady = false; // wait until images are loaded to display list
 
-  constructor( private dataService: DataService, private sanitizer: DomSanitizer) { }
+// https://docs.microsoft.com/en-us/azure/storage/blobs/quickstart-blobs-javascript-browser
+  closeModal: string;
+  constructor( private dataService: DataService, private sanitizer: DomSanitizer, private modalService: NgbModal) { }
 
   async ngOnInit(){
    // const blobSasUrl = await this.dataService.getURL();
@@ -32,9 +38,24 @@ imageBlobUrl;
 
     // List the blob(s) in the container. For each, download blob.
     for await (const blob of containerClient.listBlobsFlat()) {
+      // format date
+      const date = blob.properties.createdOn.toString();
+      // @ts-ignore
+      blob.properties.createdOn = date.replace(' (Greenwich Mean Time)', '');
+
+      // add imageurl
+      // get blob and create url
+      const blobClient = containerClient.getBlobClient(blob.name);
+
+      // // Get blob content from position 0 to the end
+      // // In browsers, get downloaded data by accessing downloadBlockBlobResponse.blobBody
+      // const downloadBlockBlobResponse = await blobClient.download();
+      // // @ts-ignore
+      // blob.imageurl = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(await downloadBlockBlobResponse.blobBody));
+      //
       this.images.push(blob);
     }
-
+// get images after so that the list can load rather than waiting for images
     for (const entry of this.images) {
 
       // get blob and create url
@@ -44,33 +65,15 @@ imageBlobUrl;
       // In browsers, get downloaded data by accessing downloadBlockBlobResponse.blobBody
       const downloadBlockBlobResponse = await blobClient.download();
       entry.imageurl = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(await downloadBlockBlobResponse.blobBody));
+
     }
 
 
   }
 
-photourl(url) {
-  return this.sanitizer.bypassSecurityTrustUrl(url);
-}
-
-  createImageFromBlob(image) {
-
-  }
-
-  // [Browsers only] A helper method used to convert a browser Blob into string.
-  async blobToString(blob) {
-    const fileReader = new FileReader();
-    return new Promise((resolve, reject) => {
-      fileReader.onloadend = (ev) => {
-        resolve(ev.target.result);
-      };
-      fileReader.onerror = reject;
-      fileReader.readAsText(blob);
-    });
-  }
-
-  async downloadFile(filename) {
-
+  viewLargerImage( image) {
+    const modalRef = this.modalService.open(ImageModalComponent);
+    modalRef.componentInstance.image = image;
 
   }
 
