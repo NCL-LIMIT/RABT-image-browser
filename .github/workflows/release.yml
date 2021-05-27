@@ -16,7 +16,7 @@ jobs:
         uses: elgohr/Publish-Docker-Github-Action@master
         with:
           registry: rabtcr.azurecr.io
-          name: rabtcr.azurecr.io/RABT-image-browser
+          name: rabtcr.azurecr.io/rabt-image-browser
           username: ${{ secrets.REGISTRY_USERNAME }}
           password: ${{ secrets.REGISTRY_PASSWORD }}
           tag_semver: true
