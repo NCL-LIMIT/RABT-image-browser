@@ -24,7 +24,6 @@ export class SigninComponent implements OnInit {
     this.dataService.setPasswordEntered(false);
   }
 
-
   async enterPassword() {
     if (this.passwordText) {
       // check if password is correct
