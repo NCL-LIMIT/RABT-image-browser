@@ -24,6 +24,7 @@
     "@angular/router": "~9.1.13",
     "@azure/storage-blob": "^12.5.0",
     "@ng-bootstrap/ng-bootstrap": "^6.2.0",
+    "bcryptjs": "^2.4.3",
     "bootstrap": "^4.4.0",
     "moment": "^2.29.1",
     "rxjs": "~6.5.4",

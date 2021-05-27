@@ -8,6 +8,8 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {ImageModalComponent} from '../image-modal/image-modal.component';
 import {type} from 'os';
 import * as moment from 'moment';
+import {Router} from '@angular/router';
+
 
 @Component({
   selector: 'app-image-browser',
@@ -16,20 +18,25 @@ import * as moment from 'moment';
 })
 export class ImageBrowserComponent implements OnInit {
 images = [];
-imageBlobUrl;
-imagesReady = false; // wait until images are loaded to display list
 
 // https://docs.microsoft.com/en-us/azure/storage/blobs/quickstart-blobs-javascript-browser
   closeModal: string;
-  constructor( private dataService: DataService, private sanitizer: DomSanitizer, private modalService: NgbModal) { }
+  constructor(
+    private dataService: DataService,
+    private sanitizer: DomSanitizer,
+    private modalService: NgbModal,
+    private router: Router) { }
 
   async ngOnInit(){
-
+ // check in case it has been 2 hours since log in
     if (this.isLoggedIn()) {
-      // const blobSasUrl = await this.dataService.getURL();
-      // todo use kubeless function
+      const blobSasUrl = await this.dataService.getURL();
+      if (blobSasUrl === 'Unauthorized') {
+        // not logged in so redirect to signing page
+        this.router.navigate(['signin']);
+      }
 
-      const blobSasUrl = '';
+      //const blobSasUrl = '';
 
       // Create the BlobServiceClient object which will be used to create a container client
       // Create a new BlobServiceClient
@@ -78,8 +85,8 @@ imagesReady = false; // wait until images are loaded to display list
         });
       }
     } else {
-      // not longged in so redirect to signing page
-      console.log('not logged in');
+      // not logged in so redirect to signing page
+      this.router.navigate(['signin']);
     }
 
 

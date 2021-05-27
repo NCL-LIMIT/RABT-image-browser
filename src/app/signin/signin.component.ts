@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {DataService} from '../data.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import * as moment from 'moment';
+import * as bcrypt from 'bcryptjs';
+
 @Component({
   selector: 'app-signin',
   templateUrl: './signin.component.html',
@@ -9,7 +11,6 @@ import * as moment from 'moment';
 })
 export class SigninComponent implements OnInit {
   passwordText: string;
-  correctPassword: string;
   message: string;
 
 
@@ -20,42 +21,26 @@ export class SigninComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.correctPassword = 'T1N2A3';
     this.dataService.setPasswordEntered(false);
   }
 
 
-  enterPassword() {
-    if (this.passwordText === this.correctPassword) {
-      this.dataService.setPasswordEntered(true);
-      this.setSession();
-      // navigate to home or to route saved in local storage
-      const route = this.routeInLocal();
-      const paramKey = localStorage.getItem('paramKey');
-      const paramValue = localStorage.getItem('paramValue');
-      console.log(route);
-      if (route === undefined || route === null) {
-        this.router.navigate(['images']);
+  async enterPassword() {
+    if (this.passwordText) {
+      // check if password is correct
+      const response = await this.dataService.checkPassword(this.passwordText);
+      if (response === 'Unauthorized') {
+        this.passwordText = '';
+        this.message = 'Incorrect password, please try again';
       } else {
-        localStorage.removeItem('route');
-        if (paramKey === null || paramValue === null) {
-          this.router.navigate([route]);
+        this.dataService.setPasswordEntered(true);
+        this.setSession();
+        this.router.navigate(['images']);
         }
-        else {
-          localStorage.removeItem('paramKey');
-          localStorage.removeItem('paramValue');
-          this.router.navigate([route], {queryParams: {paramKey: paramValue}} );
-        }
-
-      }
-    } else {
+      } else {
       this.passwordText = '';
       this.message = 'Incorrect password, please try again';
     }
-  }
-
-  routeInLocal(): string {
-    return localStorage.getItem('route');
   }
 
   setSession() {

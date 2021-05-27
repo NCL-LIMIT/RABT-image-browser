@@ -32,6 +32,15 @@ export class DataService {
 
   }
 
+  // check password
+  public checkPassword(pass): Promise<any> {
+    return this.http.get('http://access-storage.rabt.ncldata.dev/access-storage?p=' + pass, {headers: this.HTTP_OPTIONS})
+      .toPromise()
+      .then((response) => response)
+      .catch(this.handleError);
+
+  }
+
   setPasswordEntered(entered: boolean) {
     this.passwordEntered = entered;
   }
