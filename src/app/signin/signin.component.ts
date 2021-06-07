@@ -32,7 +32,9 @@ export class SigninComponent implements OnInit {
         this.passwordText = '';
         this.message = 'Incorrect password, please try again';
       } else {
+        console.log('correct password');
         this.dataService.setPasswordEntered(true);
+        this.dataService.setValue(response);
         this.setSession();
         this.router.navigate(['images']);
         }
