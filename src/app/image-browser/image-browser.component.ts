@@ -43,7 +43,10 @@ images = [];
 
         // Create the BlobServiceClient object which will be used to create a container client
         // Create a new BlobServiceClient
+        try {
         const blobServiceClient = new BlobServiceClient(this.dataService.getValue());
+
+
 
         // Get a reference to a container
         const containerClient = blobServiceClient.getContainerClient('input');
@@ -85,6 +88,10 @@ images = [];
               entry.name, {type: 'image/jpeg'});
             entry.blob = blobFile;
           });
+        }
+        } catch {
+          // any problems, log in again
+          this.router.navigate(['/signin']);
         }
       // }
     } else {
