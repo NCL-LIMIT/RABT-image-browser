@@ -71,6 +71,8 @@ images = [];
           this.images.push(blob);
         }
 // get images after so that the list can load rather than waiting for images
+          // reverse list so start with newest
+        this.images = this.images.reverse();
         for (const entry of this.images) {
 
           // get blob and create url
