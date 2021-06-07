@@ -25,7 +25,7 @@ export class DataService {
 
 //   Get SAS for read access to storage
   public getURL(): Promise<any> {
-    return this.http.get('http://access-storage.rabt.ncldata.dev/access-storage', {headers: this.HTTP_OPTIONS})
+    return this.http.get('https://access-storage.rabt.ncldata.dev/access-storage', {headers: this.HTTP_OPTIONS})
       .toPromise()
       .then((response) => response)
       .catch(this.handleError);
