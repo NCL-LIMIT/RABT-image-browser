@@ -43,7 +43,13 @@ export class SigninComponent implements OnInit {
         this.dataService.setPasswordEntered(true);
         this.dataService.setValue(response);
         this.setSession(response);
-        this.router.navigate(['images']);
+
+        // if trying to open an image
+        if (localStorage.getItem('filename')) {
+          this.router.navigate(['full'], { queryParams: { file: localStorage.getItem('filename') } } );
+        } else {
+          this.router.navigate(['images']);
+        }
         }
       } else {
       this.passwordText = '';

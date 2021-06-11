@@ -1,1 +1,10 @@
-<p>full-screen works!</p>
+
+<div class="container-fluid">
+  <div *ngIf="loading">
+    <div class="loader spinner-border text-primary" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+  </div>
+  <img class="img-responsive" [src]="imageUrl">
+</div>
+

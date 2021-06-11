@@ -28,6 +28,9 @@ images = [];
     private router: Router) { }
 
   async ngOnInit(){
+    // delete any filename saved in local storage as no longer needed
+    localStorage.removeItem('filename');
+
  // check in case it has been 2 hours since log in
     if (this.isLoggedIn()) {
       // const blobSasUrl = await this.dataService.getURL(this.dataService.getValue());
@@ -50,7 +53,7 @@ images = [];
             this.router.navigate(['signin']);
           }
 
-        const blobServiceClient = new BlobServiceClient(this.dataService.getValue());
+        const blobServiceClient = new BlobServiceClient(localStorage.getItem('connection'));
 
 
 
@@ -100,7 +103,8 @@ images = [];
         } catch {
           console.log('problem');
           // any problems, log in again
-          // this.router.navigate(['/signin']);
+          localStorage.clear();
+          this.router.navigate(['/signin']);
         }
       // }
     } else {
@@ -132,8 +136,11 @@ images = [];
 
   }
 
-  open(url) {
-    window.open(url, '_blank');
+  open(url, filename) {
+    // if user clicks before image is loaded, use filename instead
+      console.log('open with filename' + filename);
+      this.router.navigate(['full'], { queryParams: { file: filename } });
+
   }
 
 
