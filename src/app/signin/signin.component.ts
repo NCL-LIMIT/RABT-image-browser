@@ -21,7 +21,14 @@ export class SigninComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.dataService.setPasswordEntered(false);
+    // check if already signed in
+    if (this.isLoggedIn() && localStorage.getItem('connection')) {
+      this.router.navigate(['images']);
+    } else {
+      this.dataService.setPasswordEntered(false);
+      // clear local storage
+      localStorage.clear();
+    }
   }
 
   async enterPassword() {
@@ -35,7 +42,7 @@ export class SigninComponent implements OnInit {
         console.log('correct password');
         this.dataService.setPasswordEntered(true);
         this.dataService.setValue(response);
-        this.setSession();
+        this.setSession(response);
         this.router.navigate(['images']);
         }
       } else {
@@ -44,11 +51,12 @@ export class SigninComponent implements OnInit {
     }
   }
 
-  setSession() {
+  setSession(response) {
     const expiresAt = moment().add(2, 'hour');
 
     localStorage.setItem('id_token', 'loggedIn');
     localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()) );
+    localStorage.setItem('connection', response);
   }
 
   public isLoggedIn() {

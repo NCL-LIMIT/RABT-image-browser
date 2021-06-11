@@ -10,13 +10,15 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {FlexModule} from '@angular/flex-layout';
 import { SigninComponent } from './signin/signin.component';
 import {FormsModule} from '@angular/forms';
+import { FullScreenComponent } from './full-screen/full-screen.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ImageBrowserComponent,
     ImageModalComponent,
-    SigninComponent
+    SigninComponent,
+    FullScreenComponent
   ],
   imports: [
     BrowserModule,

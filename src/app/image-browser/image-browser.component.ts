@@ -37,13 +37,19 @@ images = [];
       //   this.dataService.setValue('');
       //   this.router.navigate(['signin']);
       // } else {
-        console.log('auth');
+        console.log('logged in');
 
         //const blobSasUrl = '';
 
         // Create the BlobServiceClient object which will be used to create a container client
         // Create a new BlobServiceClient
         try {
+
+          if (!localStorage.getItem('connection')) {
+            // no connection string so log in again
+            this.router.navigate(['signin']);
+          }
+
         const blobServiceClient = new BlobServiceClient(this.dataService.getValue());
 
 
@@ -92,8 +98,9 @@ images = [];
           });
         }
         } catch {
+          console.log('problem');
           // any problems, log in again
-          this.router.navigate(['/signin']);
+          // this.router.navigate(['/signin']);
         }
       // }
     } else {

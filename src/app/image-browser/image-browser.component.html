@@ -1,7 +1,10 @@
 <div class="container-fluid">
-  <div fxLayout="row wrap" fxLayoutGap="3px" class="content">
+
+
+
+  <div fxLayout="row wrap" fxLayoutGap="3px" fxLayoutAlign="center center" class="content">
   <div *ngFor="let image of images">
-  <div   class="card imageCard" style="width: 200px;">
+  <div   class="card imageCard" style="width: 400px;">
     <img class="thumbnail" [src]="image.imageurl">
     <div class="card-footer text-center">
       <p class="mb-0">{{image.properties.createdOn | date: 'd/M/yy, h:mm:ss a z'}} </p>

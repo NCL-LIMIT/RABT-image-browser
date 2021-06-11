@@ -10,9 +10,11 @@ export class RouteGuardService implements CanActivate {
 
   canActivate(): boolean {
     if (!this.isLoggedIn()) {
+      console.log('not logged in')
       this.router.navigate(['signin']);
       return false;
     }
+    console.log('logged in')
     return true;
   }
   public isLoggedIn() {
