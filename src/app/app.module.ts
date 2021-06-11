@@ -11,6 +11,7 @@ import {FlexModule} from '@angular/flex-layout';
 import { SigninComponent } from './signin/signin.component';
 import {FormsModule} from '@angular/forms';
 import { FullScreenComponent } from './full-screen/full-screen.component';
+import { PasswordDirective } from './password.directive';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { FullScreenComponent } from './full-screen/full-screen.component';
     ImageBrowserComponent,
     ImageModalComponent,
     SigninComponent,
-    FullScreenComponent
+    FullScreenComponent,
+    PasswordDirective
   ],
   imports: [
     BrowserModule,
